@@ -1,0 +1,28 @@
+<launch>
+  <!-- (start your robot's MoveIt! stack, e.g. include its moveit_planning_execution.launch) -->
+  <!-- (start your tracking system's ROS driver) -->
+  <include file="$(find robot40_description)/launch/upload_model.launch">
+  </include>
+  
+  <include file="$(find easy_handeye)/launch/calibrate.launch">
+    <arg name="eye_on_hand" value="false"/>
+    <arg name="publish_dummy" default="false"/>
+    <arg name="start_rqt" value="true"/>
+    <arg name="start_rviz" value="false"/>
+
+    <!-- you can choose any identifier, as long as you use the same for publishing the calibration -->
+    
+<!--
+    <arg name="namespace" value="my_eih_calib"/> -->
+
+    <!-- fill in the following parameters according to your robot's published tf frames -->
+    <arg name="robot_base_frame" value="base_link"/>
+    <arg name="robot_effector_frame" value="right_arm_tool0"/>
+
+    <!-- fill in the following parameters according to your tracking system's published tf frames -->
+    <arg name="tracking_base_frame" value="kinect_head"/>
+    <arg name="tracking_marker_frame" value="marker_64"/>
+  </include>
+</launch>
+
+
